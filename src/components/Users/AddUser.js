@@ -7,7 +7,7 @@ import ErrorMsg from "../UI/ErrorMsg";
 const AddUser = (props) => {
   const [username, setUsername] = useState("");
   const [age, setAge] = useState("");
-  const [error, setError] = useState()
+  const [error, setError] = useState();
 
   const usernameHanddler = (event) => {
     setUsername(event.target.value);
@@ -21,14 +21,14 @@ const AddUser = (props) => {
     if (username.trim().length === 0 || age.trim().length === 0) {
       setError({
         title: "inavild input",
-        msg: "please enter a valid name and age (not empty)"
-      })
+        msg: "please enter a valid name and age (not empty)",
+      });
       return;
     } else if (+age < 1) {
       setError({
         title: "inavild input",
-        msg: "please enter a valid age (> 0)"
-      })
+        msg: "please enter a valid age (> 0)",
+      });
       return;
     }
     props.onAddUser(username, age);
@@ -37,12 +37,18 @@ const AddUser = (props) => {
   };
 
   const errorHandler = () => {
-    setError(null)
-  }
+    setError(null);
+  };
 
   return (
     <div>
-      {error && <ErrorMsg title = {error.title} msg = {error.msg} onConfirm={errorHandler} />}
+      {error && (
+        <ErrorMsg
+          title={error.title}
+          msg={error.msg}
+          onConfirm={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={AddUserhanddler}>
           <label htmlFor="username">Username</label>
